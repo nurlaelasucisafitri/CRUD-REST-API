@@ -1,0 +1,25 @@
+import mysql from "mysql2";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const db = mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
+});
+
+// // JALANKAN KONEKSI DATABASE NYA
+db.connect((err) => {
+    //JIKA ADA ERROR
+    if (err) {
+        console.error("Error Koneksi Database", err);
+        return;
+    }
+
+    //JIKA BERHASIL
+    console.log("MYSQL Berhasil connect!");
+});
+
+export default db;
